@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  login-service:
+    container_name: login-service-container
+    restart: always
+    build:
+      context: ./backend/login-service/
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: development
+    develop : 
+      watch : 
+        - path : ./backend/login-service/package.json
+          action : rebuild
+        - path : ./backend/login-service/package-lock.json
+          action : rebuild
+        - path : ./backend/login-service
+          target : /app
+          action : sync
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backend/login-service:/app
+      - /app/node_modules
+    command: npm run dev
+  
+  web:
+    container_name: frontend-container
+    restart : always
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    ports:
+      - 5173:5173
+    volumes:
+      # - ./frontend:/app
+      - /app/node_modules
+    develop:
+      watch:
+        - path: ./frontend/package.json
+          action: rebuild
+        - path: ./frontend/package-lock.json
+          action: rebuild
+        - path: ./frontend
+          target : /app
+          action: sync+restart
+    command: npm run dev
+    
+
