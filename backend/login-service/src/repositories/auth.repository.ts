@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
+import { NextFunction, Response } from "express";
 import prisma from "../config/db.config";
-import { SignupResponse, User } from "../types/authTypes";
-import { comparePassword, generateAccessToken, hashPassword, verifyToken } from "../utils/authTools";
+import { LoginResponse, SignupResponse, User } from "../types/authTypes";
+import { comparePassword, generateAccessToken, generateRefreshToken, hashPassword, verifyRefreshToken } from "../utils/authTools";
 
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+type PayloadType = LoginResponse
 class AuthRepository {
 
     async registerUser(data: User): Promise<SignupResponse> {
@@ -44,7 +47,7 @@ class AuthRepository {
         }
     }
 
-    async loginUser(data: User): Promise<string> {
+    async loginUser(data: User): Promise<{ accessToken: string, refreshToken: string }> {
         try {
             const user = await prisma.user.findUnique({
                 where: {
@@ -78,11 +81,55 @@ class AuthRepository {
                 email: userData.email,
             });
 
-            return accessToken;
+            const refreshToken = await generateRefreshToken({
+                id: userData.id,
+                email: userData.email,
+            });
+
+            return { accessToken, refreshToken } as { accessToken: string, refreshToken: string };
         } catch (error: unknown) {
             throw new Error("Error while logging in user");
         }
     }
+
+    async generateNewAccessToken(refreshToken: string, res: Response, next: NextFunction): Promise<string> {
+        try {
+            const payload: any = await verifyRefreshToken(refreshToken, res, next);
+            console.log(payload)
+
+            const actInput: LoginResponse = {
+                id: typeof payload === 'string' ? undefined : payload?.id,
+                email: typeof payload === 'string' ? undefined : payload?.email
+            }
+
+            console.log(actInput)
+
+            const user = await prisma.user.findUnique({
+                where: {
+                    id: actInput.id
+                },
+                select: {
+                    id: true,
+                    email: true,
+                }
+            });
+
+            if (!user) {
+                throw new Error("Unauthorized");
+            }
+
+            const accessToken = await generateAccessToken(user as LoginResponse);
+
+            return accessToken;
+        } catch (error: unknown) {
+            throw new Error("Error while generating new access token");
+        }
+    }
 }
+
+
+
+
+
 
 export default AuthRepository;

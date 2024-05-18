@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt, { JwtPayload, Secret } from "jsonwebtoken";
 import { LoginResponse } from "../types/authTypes";
+import { NextFunction, Response } from "express";
 
 
 
@@ -14,33 +15,53 @@ export async function comparePassword(password: string, hashedPassword: string):
 
 
 export async function generateAccessToken(payload: LoginResponse): Promise<string> {
-
-    const secret = process.env.JWT_SECRET_KEY as Secret;
-
+    const secret = process.env.JWT_SECRET_KEY_ACCESS_TOKEN as Secret;
     return await jwt.sign(payload, secret, {
-        expiresIn: "1d",
+        expiresIn: "45s",
     });
 };
 
 
-export async function verifyToken(token: string): Promise<string | JwtPayload> {
+export async function generateRefreshToken(payload: LoginResponse): Promise<string> {
+    const secret = process.env.JWT_SECRET_KEY_REFRESH_TOKEN as Secret;
+    return await jwt.sign(payload, secret, {
+        expiresIn: "1m",
+    });
+};
+
+
+
+export async function verifyAccessToken(token: string, res: Response, next: NextFunction): Promise<string | JwtPayload | undefined> {
     try {
-        return await jwt.verify(token, process.env.JWT_SECRET_KEY as Secret);
+        return await jwt.verify(token, process.env.JWT_SECRET_KEY_ACCESS_TOKEN as Secret);
     } catch (error) {
         if (error instanceof jwt.TokenExpiredError) {
-            console.error('Token has expired.');
+            return res.status(400).json({ message: 'Acess Token has expired' });
         } else if (error instanceof jwt.JsonWebTokenError) {
-            console.error('Invalid token.');
+            return res.status(400).json({ message: 'Invalid Acess Token' });
         } else {
-            console.error('Token verification error:', error);
+            console.log('Access Token verification error :', error)
+            next(error)
         }
-        throw error;
+    }
+
+}
+
+
+export async function verifyRefreshToken(token: string, res: Response, next: NextFunction): Promise<string | JwtPayload | undefined> {
+    try {
+        return await jwt.verify(token, process.env.JWT_SECRET_KEY_REFRESH_TOKEN as Secret);
+    } catch (error) {
+        if (error instanceof jwt.TokenExpiredError) {
+            return res.status(400).json({ message: 'Refresh Token has expired' });
+        } else if (error instanceof jwt.JsonWebTokenError) {
+            return res.status(400).json({ message: 'Invalid Refresh Token' });
+        } else {
+            console.error('Refresh Token verification error :', error);
+            next(error)
+        }
     }
 }
 
 
-export async function createRefreshToken() {
-    return await jwt.sign({}, process.env.JWT_REFRESH_SECRET_KEY as Secret, {
-        expiresIn: "1d",
-    });
-}
+

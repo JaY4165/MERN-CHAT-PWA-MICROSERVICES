@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { verifyToken } from "../utils/authTools";
+import { verifyAccessToken } from "../utils/authTools";
 
 export async function verifyUser(req: Request, res: Response, next: NextFunction) {
 
@@ -12,7 +12,7 @@ export async function verifyUser(req: Request, res: Response, next: NextFunction
     }
 
     try {
-        const payload = verifyToken(token)
+        const payload = verifyAccessToken(token, res, next)
         req.body.user = payload;
         next();
     } catch (error) {
