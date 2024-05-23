@@ -1,5 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom/client";import "./css/index.css";
+import ReactDOM from "react-dom/client";
+import "./css/index.css";
 import "@radix-ui/themes/styles.css";
 import { Theme, ThemePanel } from "@radix-ui/themes";
 import { ThemeProvider } from "next-themes";
