@@ -18,7 +18,7 @@ declare module "@tanstack/react-router" {
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider attribute="class" defaultTheme="dark">
-      <Theme>
+      <Theme accentColor="mint">
         <RouterProvider router={router} />
         <ThemePanel />
       </Theme>
