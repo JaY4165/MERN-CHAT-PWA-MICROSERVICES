@@ -1,4 +1,7 @@
 {
+  "devDependencies": {
+    "@types/babel__core": "x.x.x"
+  },
   "compilerOptions": {
     "composite": true,
     "skipLibCheck": true,
