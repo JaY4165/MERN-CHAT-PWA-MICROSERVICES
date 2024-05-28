@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./css/index.css";
 import "@radix-ui/themes/styles.css";
-import { Theme, ThemePanel } from "@radix-ui/themes";
+import { Theme } from "@radix-ui/themes";
 import { ThemeProvider } from "next-themes";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
@@ -17,10 +17,10 @@ declare module "@tanstack/react-router" {
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ThemeProvider attribute="class" defaultTheme="dark">
-      <Theme accentColor="mint">
+    <ThemeProvider attribute="class">
+      <Theme accentColor="mint" radius="full">
         <RouterProvider router={router} />
-        <ThemePanel />
+        {/* <ThemePanel /> */}
       </Theme>
     </ThemeProvider>
   </React.StrictMode>
