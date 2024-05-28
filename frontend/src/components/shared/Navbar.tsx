@@ -40,12 +40,16 @@ function Navbar() {
             )}
           </div>
           <Link to="/register" className="[&.active]:font-bold">
-            <Button variant="ghost" size={"3"}>
+            <Button variant="ghost" size={"3"} radius="full">
               SignUp
             </Button>
           </Link>{" "}
           <Link to="/login" className="[&.active]:font-bold">
-            <Button variant="surface" size={"3"}>
+            <Button
+              variant="surface"
+              size={"3"}
+              radius="full"
+            >
               Login
             </Button>
           </Link>{" "}
