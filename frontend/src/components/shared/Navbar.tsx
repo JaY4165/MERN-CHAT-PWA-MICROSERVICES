@@ -5,7 +5,9 @@ function Navbar() {
   return (
     <div className="p-2 flex justify-between gap-2 pt-5">
       <Link to="/" className="[&.active]:font-bold cursor-pointer">
-        <Heading as="h3">WhisperWaves</Heading>
+        <Heading as="h4" color="mint">
+          WhisperWaves
+        </Heading>
       </Link>{" "}
       <div className="space-x-10 flex items-center">
         <Link to="/register" className="[&.active]:font-bold">
