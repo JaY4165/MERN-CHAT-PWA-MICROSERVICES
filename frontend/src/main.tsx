@@ -6,6 +6,7 @@ import { Theme } from "@radix-ui/themes";
 import { ThemeProvider } from "next-themes";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
+import { Toaster } from "sonner";
 
 const router = createRouter({ routeTree });
 
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Theme accentColor="mint">
         <RouterProvider router={router} />
         {/* <ThemePanel /> */}
+        <Toaster closeButton richColors />
       </Theme>
     </ThemeProvider>
   </React.StrictMode>
