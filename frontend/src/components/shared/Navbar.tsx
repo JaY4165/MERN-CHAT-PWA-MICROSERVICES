@@ -10,7 +10,7 @@ function Navbar() {
       <Flex
         justify={"between"}
         align={"center"}
-        className="p-2 px-4 mt-10 backdrop-blur-[30px] rounded-full bg-[#e3fffb] dark:bg-[rgba(236,255,252,0.1)] "
+        className="p-2 px-4 mt-10 backdrop-blur-[30px] rounded-full bg-[#b9fff4] dark:bg-[rgba(236,255,252,0.1)] "
       >
         <Link to="/" className="[&.active]:font-bold cursor-pointer">
           <Heading
@@ -18,7 +18,6 @@ function Navbar() {
             size={{
               initial: "3",
               md: "5",
-              xl: "9",
             }}
             color="mint"
           >
@@ -45,11 +44,7 @@ function Navbar() {
             </Button>
           </Link>{" "}
           <Link to="/login" className="[&.active]:font-bold">
-            <Button
-              variant="surface"
-              size={"3"}
-              radius="full"
-            >
+            <Button variant="surface" size={"3"} radius="full">
               Login
             </Button>
           </Link>{" "}

@@ -13,7 +13,8 @@ export const UserSchema = z
                     message:
                         "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
                 }
-            ),
+            )
+        ,
     });
 
 export type User = z.infer<typeof UserSchema>
