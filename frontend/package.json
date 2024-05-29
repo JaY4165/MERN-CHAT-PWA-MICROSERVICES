@@ -16,6 +16,7 @@
     "@radix-ui/themes": "^3.0.5",
     "@tanstack/react-router": "^1.33.7",
     "axios": "^1.7.2",
+    "js-cookie": "^3.0.5",
     "next-themes": "^0.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -26,6 +27,7 @@
   "devDependencies": {
     "@tanstack/router-devtools": "^1.33.7",
     "@tanstack/router-vite-plugin": "^1.32.17",
+    "@types/js-cookie": "^3.0.6",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

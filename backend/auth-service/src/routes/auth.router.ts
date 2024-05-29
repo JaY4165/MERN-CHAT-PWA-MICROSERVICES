@@ -8,7 +8,7 @@ const router: Router = Router();
 
 router.post('/signup', validateRequest(UserSchema), signUp);
 
-router.post('/login', login);
+router.post('/login', validateRequest(UserSchema), login);
 
 router.get('/refresh', refreshToken)
 

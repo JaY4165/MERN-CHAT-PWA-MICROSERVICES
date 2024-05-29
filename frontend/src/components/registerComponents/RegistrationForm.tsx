@@ -10,7 +10,7 @@ import FormCard from "../shared/FormCard";
 import { useNavigate } from "@tanstack/react-router";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const RegistrationFormSchema = z
+export const RegistrationFormSchema = z
   .object({
     email: z.string().email(),
     password: z
@@ -32,7 +32,7 @@ const RegistrationFormSchema = z
     path: ["confirmPassword"],
   });
 
-type RegistrationFormType = z.infer<typeof RegistrationFormSchema>;
+export type RegistrationFormType = z.infer<typeof RegistrationFormSchema>;
 
 const RegistrationForm = () => {
   const { theme } = useTheme();

@@ -24,7 +24,7 @@ function Navbar() {
             WhisperWaves
           </Heading>
         </Link>{" "}
-        <div className="space-x-10 flex items-center">
+        <div className="space-x-5 flex items-center">
           <div className="cursor-pointer">
             {theme === "dark" ? (
               <SunIcon
