@@ -1,6 +1,6 @@
-import { NextFunction, Request, RequestHandler, Response } from "express";
-import { z, ZodError } from "zod";
-import { StatusCodes } from "http-status-codes"
+import { NextFunction, Request, RequestHandler, Response } from 'express';
+import { z, ZodError } from 'zod';
+import { StatusCodes } from 'http-status-codes';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function validateRequest(schema: z.AnyZodObject): RequestHandler {
@@ -11,7 +11,7 @@ export function validateRequest(schema: z.AnyZodObject): RequestHandler {
         } catch (error) {
             if (error instanceof ZodError) {
                 return res.status(StatusCodes.BAD_REQUEST).json({
-                    message: "Validation failed",
+                    message: 'Validation failed',
                     errors: error.errors,
                 });
             }

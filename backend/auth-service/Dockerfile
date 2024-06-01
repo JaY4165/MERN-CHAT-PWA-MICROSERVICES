@@ -12,5 +12,5 @@ RUN npm install -g ts-node-dev
 
 COPY . .
 
-RUN npm run build
+RUN npm run start
 

@@ -1,29 +1,29 @@
 version: '3.8'
 
 services:
-  login-service:
-    container_name: login-service-container
+  auth-service:
+    container_name: auth-service-container
     restart: always
     build:
-      context: ./backend/login-service/
+      context: ./backend/auth-service/
       dockerfile: Dockerfile
     environment:
       NODE_ENV: development
     develop : 
       watch : 
-        - path : ./backend/login-service/package.json
+        - path : ./backend/auth-service/package.json
           action : rebuild
-        - path : ./backend/login-service/package-lock.json
+        - path : ./backend/auth-service/package-lock.json
           action : rebuild
-        - path : ./backend/login-service
+        - path : ./backend/auth-service
           target : /app
           action : sync
     ports:
       - 8080:8080
     volumes:
-      - ./backend/login-service:/app
+      - ./backend/auth-service:/app
       - /app/node_modules
-    command: npm run dev
+    command: npm run start
   
   web:
     container_name: frontend-container
@@ -45,6 +45,6 @@ services:
         - path: ./frontend
           target : /app
           action: sync+restart
-    command: npm run dev
+    command: npm run build
     
 
