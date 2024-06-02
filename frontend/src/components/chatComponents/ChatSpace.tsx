@@ -1,16 +1,17 @@
 import { Box } from "@radix-ui/themes";
 import { cn } from "../../lib/utils";
 import { useTheme } from "next-themes";
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import lightbg from "/images/chatbg5.jpg";
 import darkbg from "/images/chatbg3.jpg";
+import Sidebar from "./Sidebar";
+
 
 const ChatSpace = () => {
   const [cardColor, setCardColor] = useState<string>("");
   const darkCard = "bg-[rgba(0,0,0,0.5)]";
   const lighthCard = "bg-[rgba(255,255,255,0.3)]";
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (theme === "dark") {
@@ -25,37 +26,24 @@ const ChatSpace = () => {
     <div className="relative">
       <img
         src={theme === "dark" ? darkbg : lightbg}
+        loading="eager"
+        alt="Chat background"
         className={cn(
           "w-full h-[100vh] bg-cover bg-center bg-fixed bg-no-repeat blur-3xl saturate-50 brightness-75  overflow-hidden absolute z-0"
         )}
       />
-      <div className="grid p-3 grid-cols-12 w-full gap-3 h-full z-10 fixed">
-        <Box
-          className={cn(
-            "col-span-1 backdrop-blur-xl border-none brightness-110  rounded-lg",
-            cardColor
-          )}
-        ></Box>
+      <div className="grid p-3 grid-cols-12 gap-3 w-full h-full z-10 fixed">
+        <Box asChild>
+          <Sidebar cardColor={cardColor} />
+        </Box>
 
         <Box
           className={cn(
-            "col-span-3 backdrop-blur-xl border-none brightness-110  rounded-lg",
+            "col-span-3 backdrop-blur-xl border-none brightness-110 rounded-lg",
             cardColor
           )}
         >
-          <div className="cursor-pointer">
-            {theme === "dark" ? (
-              <SunIcon
-                className="size-5"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              />
-            ) : (
-              <MoonIcon
-                className="size-5"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              />
-            )}
-          </div>
+         
         </Box>
         <Box
           className={cn(

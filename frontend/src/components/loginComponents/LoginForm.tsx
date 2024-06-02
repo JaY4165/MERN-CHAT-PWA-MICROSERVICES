@@ -79,7 +79,8 @@ const LoginForm = () => {
             // path: "/",
           });
           navigate({
-            to: "/",
+            to: "/chat",
+            replace: true,
           });
         }
       })
