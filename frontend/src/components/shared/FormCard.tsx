@@ -11,7 +11,7 @@ const FormCard = ({ children }: { children: React.ReactNode }) => {
           className="absolute blur-3xl opacity-25"
           loading="eager"
         />
-        <Card className="backdrop-blur-sm rounded-full max-h-[32rem]">
+        <Card className="backdrop-blur-sm saturate-150 rounded-full max-h-[32rem]">
           {children}
         </Card>
       </Box>
