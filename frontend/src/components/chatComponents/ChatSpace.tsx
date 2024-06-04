@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import lightbg from "/images/chatbg5.jpg";
 import darkbg from "/images/chatbg3.jpg";
 import Sidebar from "./Sidebar";
-
+import ChatUsers from "./ChatUsers";
 
 const ChatSpace = () => {
   const [cardColor, setCardColor] = useState<string>("");
@@ -32,8 +32,8 @@ const ChatSpace = () => {
           "w-full h-[100vh] bg-cover bg-center bg-fixed bg-no-repeat blur-3xl saturate-50 brightness-75  overflow-hidden absolute z-0"
         )}
       />
-      <div className="grid p-3 grid-cols-12 gap-3 w-full h-full z-10 fixed">
-        <Box asChild>
+      <div className="grid p-3 grid-cols-12 gap-3 w-full z-10 fixed">
+        <Box asChild maxHeight={"96vh"}>
           <Sidebar cardColor={cardColor} />
         </Box>
 
@@ -42,10 +42,12 @@ const ChatSpace = () => {
             "col-span-3 backdrop-blur-xl border-none brightness-110 rounded-lg",
             cardColor
           )}
+          maxHeight={"96vh"}
         >
-         
+          <ChatUsers />
         </Box>
         <Box
+          maxHeight={"96vh"}
           className={cn(
             "col-span-5 backdrop-blur-xl border-none brightness-110 rounded-lg",
             cardColor
@@ -53,6 +55,7 @@ const ChatSpace = () => {
         ></Box>
 
         <Box
+          maxHeight={"96vh"}
           className={cn(
             "col-span-3 backdrop-blur-xl border-none brightness-110  rounded-lg",
             cardColor
