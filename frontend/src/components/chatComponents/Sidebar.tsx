@@ -25,7 +25,11 @@ const Sidebar = ({ cardColor }: { cardColor: string }) => {
     >
       <div className="flex flex-col space-y-10">
         <Tooltip content="Chats">
-          <Button variant="ghost" radius="large">
+          <Button
+            variant="ghost"
+            color={theme === "dark" ? "gray" : "mint"}
+            radius="large"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -44,7 +48,11 @@ const Sidebar = ({ cardColor }: { cardColor: string }) => {
         </Tooltip>
 
         <Tooltip content="Calls">
-          <Button variant="ghost" radius="large">
+          <Button
+            variant="ghost"
+            color={theme === "dark" ? "gray" : "mint"}
+            radius="large"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -63,7 +71,11 @@ const Sidebar = ({ cardColor }: { cardColor: string }) => {
         </Tooltip>
 
         <Tooltip content={theme + " mode"}>
-          <Button variant="ghost" radius="large">
+          <Button
+            variant="ghost"
+            color={theme === "dark" ? "gray" : "mint"}
+            radius="large"
+          >
             <div className="cursor-pointer">
               {theme === "dark" ? (
                 <SunIcon

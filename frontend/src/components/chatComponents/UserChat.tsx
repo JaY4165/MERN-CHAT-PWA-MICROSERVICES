@@ -276,7 +276,7 @@ const UserChat = () => {
           className=""
           variant="soft"
           radius="medium"
-          color="mint"
+          color={theme === "dark" ? "gray" : "mint"}
         ></TextField.Root>
       </Box>
     </section>

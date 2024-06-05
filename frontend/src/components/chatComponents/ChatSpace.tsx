@@ -30,7 +30,7 @@ const ChatSpace = () => {
         loading="eager"
         alt="Chat background"
         className={cn(
-          "w-full h-[100vh] bg-cover bg-center bg-fixed bg-no-repeat blur-3xl saturate-100 brightness-75  overflow-hidden absolute z-0"
+          "w-full h-[100vh] bg-cover bg-center bg-fixed bg-no-repeat blur-3xl saturate-200  overflow-hidden absolute z-0"
         )}
       />
       <div className="grid p-3 grid-cols-12 gap-3 w-full z-10 fixed ">
