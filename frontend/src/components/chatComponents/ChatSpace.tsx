@@ -6,6 +6,7 @@ import lightbg from "/images/chatbg5.jpg";
 import darkbg from "/images/chatbg3.jpg";
 import Sidebar from "./Sidebar";
 import ChatUsers from "./ChatUsers";
+import UserChat from "./UserChat";
 
 const ChatSpace = () => {
   const [cardColor, setCardColor] = useState<string>("");
@@ -52,7 +53,9 @@ const ChatSpace = () => {
             "col-span-5 backdrop-blur-xl border-none brightness-110 rounded-lg",
             cardColor
           )}
-        ></Box>
+        >
+          <UserChat />
+        </Box>
 
         <Box
           maxHeight={"96vh"}

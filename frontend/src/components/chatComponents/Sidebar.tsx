@@ -1,6 +1,5 @@
-import { Button, DropdownMenu, Tooltip } from "@radix-ui/themes";
+import { Avatar, Button, DropdownMenu, Tooltip } from "@radix-ui/themes";
 import { cn } from "../../lib/utils";
-import Avvvatars from "avvvatars-react";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
@@ -84,7 +83,12 @@ const Sidebar = ({ cardColor }: { cardColor: string }) => {
       <DropdownMenu.Root>
         <DropdownMenu.Trigger>
           <Button variant="ghost">
-            <Avvvatars value="tim@apple.com" />
+            <Avatar
+              size="3"
+              src="https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?&w=64&h=64&dpr=2&q=70&crop=focalpoint&fp-x=0.67&fp-y=0.5&fp-z=1.4&fit=crop"
+              radius="full"
+              fallback="T"
+            />
           </Button>
         </DropdownMenu.Trigger>
         <DropdownMenu.Content

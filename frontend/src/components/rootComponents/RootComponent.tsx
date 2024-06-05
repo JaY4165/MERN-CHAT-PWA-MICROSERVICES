@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from "@tanstack/react-router";
 import Navbar from "../shared/Navbar";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+// import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { useEffect, useState } from "react";
 
 const RootComponent = () => {
@@ -19,7 +19,7 @@ const RootComponent = () => {
     <>
       {chatPathMatched === false ? <Navbar /> : null}
       <Outlet />
-      <TanStackRouterDevtools />
+      {/* <TanStackRouterDevtools /> */}
     </>
   );
 };
