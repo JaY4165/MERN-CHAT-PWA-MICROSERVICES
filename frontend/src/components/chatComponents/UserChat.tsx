@@ -92,7 +92,7 @@ const UserChat = () => {
                 )}
                 variant="ghost"
               >
-                <p className="text-sm break-all text-pretty">Hi</p>
+                <p className="text-sm break-all text-pretty">😂🤣✨</p>
               </Card>
             </div>
           </div>

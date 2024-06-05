@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, Flex, Text } from "@radix-ui/themes";
+import { Avatar, Badge, Box, Card, Flex, Text } from "@radix-ui/themes";
 
 const ChatUsersList = () => {
   return (
@@ -11,12 +11,15 @@ const ChatUsersList = () => {
           >
             <Flex align={"start"} justify={"between"}>
               <Flex gap="3" align="center">
-                <Avatar
-                  size="3"
-                  src="https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?&w=64&h=64&dpr=2&q=70&crop=focalpoint&fp-x=0.67&fp-y=0.5&fp-z=1.4&fit=crop"
-                  radius="full"
-                  fallback="T"
-                />
+                <div className="relative">
+                  <Avatar
+                    size="3"
+                    src="https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?&w=64&h=64&dpr=2&q=70&crop=focalpoint&fp-x=0.67&fp-y=0.5&fp-z=1.4&fit=crop"
+                    radius="full"
+                    fallback="T"
+                  />
+                  <div className="absolute bottom-0 right-0 bg-green-600 w-2 h-2 rounded-full"></div>
+                </div>
                 <Box>
                   <Text
                     as="div"
@@ -31,10 +34,16 @@ const ChatUsersList = () => {
                   </Text>
                 </Box>
               </Flex>
-              <Box className="mt-1">
+              <Box className="mt-1 text-end">
                 <Text as="div" size="1" color="gray">
                   2:30 PM
                 </Text>
+
+                <Badge color="gray" variant="soft" radius="full" className="">
+                  <Text as="div" size="1" color="gray">
+                    2
+                  </Text>
+                </Badge>
               </Box>
             </Flex>
           </Card>
