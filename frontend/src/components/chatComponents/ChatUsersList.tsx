@@ -1,6 +1,8 @@
 import { Avatar, Badge, Box, Card, Flex, Text } from "@radix-ui/themes";
+import { useTheme } from "next-themes";
 
 const ChatUsersList = () => {
+  const { theme } = useTheme();
   return (
     <Box className="px-3 space-y-5 overflow-scroll max-h-[80vh] no-scrollbar">
       {[...Array(20)].map((index) => (
@@ -39,8 +41,13 @@ const ChatUsersList = () => {
                   2:30 PM
                 </Text>
 
-                <Badge color="gray" variant="soft" radius="full" className="">
-                  <Text as="div" size="1" color="gray">
+                <Badge
+                  color="mint"
+                  variant={theme === "dark" ? "soft" : "solid"}
+                  radius="full"
+                  className=""
+                >
+                  <Text as="div" size="1">
                     2
                   </Text>
                 </Badge>
