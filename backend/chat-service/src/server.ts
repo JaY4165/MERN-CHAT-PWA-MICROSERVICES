@@ -2,12 +2,10 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import { limiter } from './utils/rate-limiter';
-import * as authRouter from './routes/auth.router';
 import cookieParser from 'cookie-parser';
-import { globalErrorHandler } from './middleware/globalErrorHandler';
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8081;
 
 app.use(
     express.json({
@@ -27,9 +25,6 @@ app.use(
 );
 app.use(limiter);
 
-app.use('/api/auth', authRouter.default);
-
-app.use(globalErrorHandler);
 
 app.listen(port, () =>
     console.log(`Example app listening on port ${port}!`)
