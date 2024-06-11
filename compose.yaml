@@ -3,13 +3,15 @@ services:
     container_name: cassandra
     image: cassandra:5.0
     ports:
-      - 9042:9042
+      - "9042:9042"
     environment:
-      CASSANDRA_USER: admin
-      CASSANDRA_PASSWORD: admin
       CASSANDRA_CLUSTER_NAME: messages
-    # volumes:
-    #   - cassandra-data:/var/lib/cassandra
+      CASSANDRA_DC : DC1
+      CASSANDRA_RACK : RAC1
+      CASSANDRA_SEEDS : cassandra
+      CASSANDRA_START_RPC: true
+    volumes:
+      - cassandra-data:/var/lib/cassandra
 
 
   auth-service:
@@ -24,7 +26,7 @@ services:
       JWT_SECRET_KEY_ACCESS_TOKEN: b5d0eaa4c03d1c70a03b1ba0d37e5c5b3e447d55d02bcd3369943cfbfb15223748ec3182c7060915f74cb3d5d0e135841f36a8683f87667b7dce267c304d334c
       JWT_SECRET_KEY_REFRESH_TOKEN: 990857831008d1544e1e081dac949be799741eae80913f9d1d12d99697eb6c8501d35e1731fb92b26d820e1d40199baa90d502ff54929f72ed7377c3baa43ba3
     ports:
-      - 8080:8080
+      - "8080:8080"
     
   
   # web:
@@ -48,5 +50,6 @@ services:
   #         target : /app
   #         action: sync+restart
   #   command: npm run build
-    
 
+volumes:
+  cassandra-data:
