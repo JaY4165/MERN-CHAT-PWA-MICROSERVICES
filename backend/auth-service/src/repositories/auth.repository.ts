@@ -17,7 +17,7 @@ type PayloadType = LoginResponse;
 class AuthRepository {
     async registerUser(data: User): Promise<SignupResponse> {
         try {
-            const userExists = await prisma.user.findUnique({
+            const userExists = await prisma.users.findUnique({
                 where: {
                     email: data.email,
                 },
@@ -33,7 +33,7 @@ class AuthRepository {
 
             const hashedPassword = await hashPassword(data.password);
 
-            const result: SignupResponse = await prisma.user.create({
+            const result: SignupResponse = await prisma.users.create({
                 data: {
                     email: data.email,
                     password: hashedPassword,
@@ -55,7 +55,7 @@ class AuthRepository {
         data: User
     ): Promise<{ accessToken: string; refreshToken: string }> {
         try {
-            const user = await prisma.user.findUnique({
+            const user = await prisma.users.findUnique({
                 where: {
                     email: data.email,
                 },
@@ -123,7 +123,7 @@ class AuthRepository {
 
             console.log(actInput);
 
-            const user = await prisma.user.findUnique({
+            const user = await prisma.users.findUnique({
                 where: {
                     id: actInput.id,
                 },
