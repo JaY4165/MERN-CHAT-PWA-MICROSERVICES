@@ -3,6 +3,8 @@ import helmet from 'helmet';
 import cors from 'cors';
 import { limiter } from './utils/rate-limiter';
 import cookieParser from 'cookie-parser';
+import * as userRouter from './routes/user.router';
+
 
 const app = express();
 const port = process.env.PORT || 8081;
@@ -25,6 +27,7 @@ app.use(
 );
 app.use(limiter);
 
+app.use('/api/user', userRouter.default);
 
 app.listen(port, () =>
     console.log(`Example app listening on port ${port}!`)
