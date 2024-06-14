@@ -1,13 +1,14 @@
 import { Router } from 'express';
-import { createNewProfile } from '../controllers/user.controller';
+import { createNewProfileController, getProfileController, updateProfileController } from '../controllers/user.controller';
 
 
 const router: Router = Router();
 
-router.post('/create-profile', createNewProfile);
+router.post('/create-profile/:userId', createNewProfileController);
 
-router.post('/update-profile');
+router.get('/read-profile/:userId', getProfileController)
 
-router.get('/:userId');
+router.put('/update-profile/:userId', updateProfileController);
 
-export default router;
+
+export default router;  
