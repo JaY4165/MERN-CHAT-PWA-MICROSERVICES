@@ -5,7 +5,7 @@ import { limiter } from './utils/rate-limiter';
 import cookieParser from 'cookie-parser';
 
 const app = express();
-const port = process.env.PORT || 8081;
+const port = process.env.PORT || 8082;
 
 app.use(
     express.json({

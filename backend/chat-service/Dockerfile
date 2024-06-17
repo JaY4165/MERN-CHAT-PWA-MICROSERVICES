@@ -4,13 +4,11 @@ WORKDIR /app
 
 COPY package*.json ./
 
-COPY tsconfig.json ./
-
-RUN npm ci
-
-RUN npm install -g ts-node-dev
+RUN npm install
 
 COPY . .
 
-RUN npm run start
+RUN npm run build
+
+CMD [ "npm","run","prod" ] 
 
