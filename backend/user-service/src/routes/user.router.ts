@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createNewProfileController, getProfileController, updateProfileController } from '../controllers/user.controller';
+import { createNewProfileController, getConversationsController, getProfileController, getUniqueConversationController, updateProfileController } from '../controllers/user.controller';
 
 
 const router: Router = Router();
@@ -10,8 +10,8 @@ router.get('/read-profile/:userId', getProfileController)
 
 router.put('/update-profile/:userId', updateProfileController);
 
-router.get('/user-conversations/:userId')
+router.get('/user-conversations/:userId', getConversationsController)
 
-router.get('user-conversation/:userId/:recipientId')
+router.get('user-conversation/:userId/:recipientId', getUniqueConversationController)
 
 export default router;  

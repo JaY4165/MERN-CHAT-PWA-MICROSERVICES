@@ -88,6 +88,24 @@ class UserRepository {
             throw new Error('Error while updating profile');
         }
     }
+
+    async getConversations(userId: string) {
+        try {
+            return userId
+        } catch (error) {
+            console.log(error)
+            throw new Error('Error while fetching conversations');
+        }
+    }
+
+    async getUniqueConversation(userId: string, recipientId: string) {
+        try {
+            return { userId, recipientId }
+        } catch (error) {
+            console.log(error)
+            throw new Error('Error while fetching conversation');
+        }
+    }
 }
 
 export default UserRepository;

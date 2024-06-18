@@ -30,6 +30,22 @@ class UserService {
             throw new Error('Error while updating profile');
         }
     }
+
+    async getConversationsService(userId: string) {
+        try {
+            return await this.repository.getConversations(userId);
+        } catch (error) {
+            throw new Error('Error while fetching conversations');
+        }
+    }
+
+    async getUniqueConversationService(userId: string, recipientId: string) {
+        try {
+            return await this.repository.getUniqueConversation(userId, recipientId);
+        } catch (error) {
+            throw new Error('Error while fetching conversation');
+        }
+    }
 }
 
 

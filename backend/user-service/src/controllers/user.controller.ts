@@ -46,3 +46,31 @@ export async function updateProfileController(req: Request, res: Response) {
 }
 
 
+export async function getConversationsController(req: Request, res: Response) {
+    const userId: string = req.params.userId as string;
+    const userService = new UserService();
+    try {
+        const result = await userService.getConversationsService(userId);
+        res.status(StatusCodes.OK).json(result);
+    } catch (error) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
+            'Error while fetching conversations'
+        );
+    }
+}
+
+
+export async function getUniqueConversationController(req: Request, res: Response) {
+    const userId: string = req.params.userId as string;
+    const recipientId: string = req.params.recipientId as string;
+    const userService = new UserService();
+    try {
+        const result = await userService.getUniqueConversationService(userId, recipientId);
+        res.status(StatusCodes.OK).json(result);
+    } catch (error) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
+            'Error while fetching conversation'
+        );
+    }
+}
+
