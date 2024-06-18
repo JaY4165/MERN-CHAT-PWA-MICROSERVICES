@@ -12,6 +12,6 @@ router.put('/update-profile/:userId', updateProfileController);
 
 router.get('/user-conversations/:userId', getConversationsController)
 
-router.get('user-conversation/:userId/:recipientId', getUniqueConversationController)
+router.get('/user-conversation/:userId/:recipientId', getUniqueConversationController)
 
 export default router;  
