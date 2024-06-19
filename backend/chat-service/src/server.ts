@@ -3,6 +3,7 @@ import helmet from 'helmet';
 import cors from 'cors';
 import { limiter } from './utils/rate-limiter';
 import cookieParser from 'cookie-parser';
+import * as authRouter from "./routes/chat.router"
 
 const app = express();
 const port = process.env.PORT || 8082;
@@ -25,7 +26,7 @@ app.use(
 );
 app.use(limiter);
 
-app.use("/api/chat", );
+app.use("/api/chat", authRouter.default);
 
 
 app.listen(port, () =>
