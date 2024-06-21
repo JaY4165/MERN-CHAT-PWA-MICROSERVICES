@@ -32,6 +32,6 @@ app.use("/api/chat", authRouter.default);
 app.listen(port, () =>
     console.log(`Example app listening on port ${port}!`)
 ).on('error', (err) => {
-    console.error('Error starting server:', err);
+    console.error('Error starting server :', err);
     process.exit(1);
 });
