@@ -5,6 +5,8 @@ import { limiter } from './utils/rate-limiter';
 import cookieParser from 'cookie-parser';
 import * as authRouter from "./routes/chat.router"
 import { Request, Response } from 'express';
+import morgan from 'morgan';
+import logger from './utils/logger';
 
 const app = express();
 const port = process.env.PORT || 8082;
@@ -27,11 +29,28 @@ app.use(
 );
 app.use(limiter);
 
+const morganFormat = ':method :url :status :response-time ms';
+
+app.use(morgan(morganFormat, {
+    stream: {
+        write: (message) => {
+            const logObject = {
+                method: message.split(' ')[0],
+                url: message.split(' ')[1],
+                status: message.split(' ')[2],
+                responseTime: message.split(' ')[3],
+
+            };
+            logger.info(JSON.stringify(logObject));
+        }
+    }
+}));
+
 app.use("/api/chat", authRouter.default);
 
 app.use("*"
     , (req: Request, res: Response) => {
-        res.status(404).json({ message: "Route not found" });
+        res.status(404).json({ message: "Route not found" } );
     });
 
 
