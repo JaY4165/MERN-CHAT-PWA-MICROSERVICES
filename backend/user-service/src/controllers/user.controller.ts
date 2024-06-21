@@ -1,7 +1,6 @@
-import { Request, Response } from "express";
-import UserService from "../services/user.service";
+import { Request, Response } from 'express';
+import UserService from '../services/user.service';
 import { StatusCodes } from 'http-status-codes';
-
 
 export async function createNewProfile(req: Request, res: Response) {
     const userId: string = req.params.userId as string;
@@ -16,7 +15,6 @@ export async function createNewProfile(req: Request, res: Response) {
     }
 }
 
-
 export async function getProfile(req: Request, res: Response) {
     const userId: string = req.params.userId as string;
     const userService = new UserService();
@@ -29,7 +27,6 @@ export async function getProfile(req: Request, res: Response) {
         );
     }
 }
-
 
 export async function updateProfile(req: Request, res: Response) {
     const userId: string = req.params.userId as string;
@@ -45,7 +42,6 @@ export async function updateProfile(req: Request, res: Response) {
     }
 }
 
-
 export async function getConversations(req: Request, res: Response) {
     const userId: string = req.params.userId as string;
     const userService = new UserService();
@@ -59,13 +55,15 @@ export async function getConversations(req: Request, res: Response) {
     }
 }
 
-
 export async function getUniqueConversation(req: Request, res: Response) {
     const userId: string = req.params.userId as string;
     const recipientId: string = req.params.recipientId as string;
     const userService = new UserService();
     try {
-        const result = await userService.getUniqueConversationService(userId, recipientId);
+        const result = await userService.getUniqueConversationService(
+            userId,
+            recipientId
+        );
         res.status(StatusCodes.OK).json(result);
     } catch (error) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
@@ -73,4 +71,3 @@ export async function getUniqueConversation(req: Request, res: Response) {
         );
     }
 }
-

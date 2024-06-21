@@ -1,4 +1,4 @@
-import UserRepository from "../repositories/user.repository";
+import UserRepository from '../repositories/user.repository';
 
 class UserService {
     repository: UserRepository;
@@ -41,12 +41,14 @@ class UserService {
 
     async getUniqueConversationService(userId: string, recipientId: string) {
         try {
-            return await this.repository.getUniqueConversation(userId, recipientId);
+            return await this.repository.getUniqueConversation(
+                userId,
+                recipientId
+            );
         } catch (error) {
             throw new Error('Error while fetching conversation');
         }
     }
 }
-
 
 export default UserService;

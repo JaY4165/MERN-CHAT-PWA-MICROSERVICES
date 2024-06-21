@@ -1,8 +1,6 @@
-import prisma from "../config/db.config";
-
+import prisma from '../config/db.config';
 
 class UserRepository {
-
     async createProfile(userId: string) {
         try {
             const profile = await prisma.profiles.create({
@@ -11,18 +9,18 @@ class UserRepository {
                 },
                 select: {
                     id: true,
-                    user_id: true
-                }
-            })
-            console.log(profile)
+                    user_id: true,
+                },
+            });
+            console.log(profile);
 
             if (!profile) {
                 throw new Error('Error while creating profile');
             }
 
-            return profile
+            return profile;
         } catch (error) {
-            console.log(error)
+            console.log(error);
             throw new Error('Error while creating profile');
         }
     }
@@ -31,7 +29,7 @@ class UserRepository {
         try {
             const profile = await prisma.profiles.findUnique({
                 where: {
-                    user_id: userId
+                    user_id: userId,
                 },
                 select: {
                     id: true,
@@ -41,19 +39,18 @@ class UserRepository {
                     gender: true,
                     username: true,
                     created_at: true,
-                    updated_at: true
-                }
-            })
-            console.log(profile)
+                    updated_at: true,
+                },
+            });
+            console.log(profile);
 
             if (!profile) {
                 throw new Error('Error while fetching profile');
             }
 
-            return profile
-
+            return profile;
         } catch (error) {
-            console.log(error)
+            console.log(error);
             throw new Error('Error while fetching profile');
         }
     }
@@ -72,37 +69,36 @@ class UserRepository {
                     username: data.username,
                 },
                 select: {
-                    user_id: true
-                }
-            })
-            console.log(profile)
+                    user_id: true,
+                },
+            });
+            console.log(profile);
 
             if (!profile) {
                 throw new Error('Error while updating profile');
             }
 
-            return profile
-        }
-        catch (error) {
-            console.log(error)
+            return profile;
+        } catch (error) {
+            console.log(error);
             throw new Error('Error while updating profile');
         }
     }
 
     async getConversations(userId: string) {
         try {
-            return userId
+            return userId;
         } catch (error) {
-            console.log(error)
+            console.log(error);
             throw new Error('Error while fetching conversations');
         }
     }
 
     async getUniqueConversation(userId: string, recipientId: string) {
         try {
-            return { userId, recipientId }
+            return { userId, recipientId };
         } catch (error) {
-            console.log(error)
+            console.log(error);
             throw new Error('Error while fetching conversation');
         }
     }
