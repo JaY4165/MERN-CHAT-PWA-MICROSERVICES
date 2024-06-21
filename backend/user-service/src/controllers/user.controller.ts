@@ -3,7 +3,7 @@ import UserService from "../services/user.service";
 import { StatusCodes } from 'http-status-codes';
 
 
-export async function createNewProfileController(req: Request, res: Response) {
+export async function createNewProfile(req: Request, res: Response) {
     const userId: string = req.params.userId as string;
     const userService = new UserService();
     try {
@@ -17,7 +17,7 @@ export async function createNewProfileController(req: Request, res: Response) {
 }
 
 
-export async function getProfileController(req: Request, res: Response) {
+export async function getProfile(req: Request, res: Response) {
     const userId: string = req.params.userId as string;
     const userService = new UserService();
     try {
@@ -31,7 +31,7 @@ export async function getProfileController(req: Request, res: Response) {
 }
 
 
-export async function updateProfileController(req: Request, res: Response) {
+export async function updateProfile(req: Request, res: Response) {
     const userId: string = req.params.userId as string;
     const data = req.body;
     const userService = new UserService();
@@ -46,7 +46,7 @@ export async function updateProfileController(req: Request, res: Response) {
 }
 
 
-export async function getConversationsController(req: Request, res: Response) {
+export async function getConversations(req: Request, res: Response) {
     const userId: string = req.params.userId as string;
     const userService = new UserService();
     try {
@@ -60,7 +60,7 @@ export async function getConversationsController(req: Request, res: Response) {
 }
 
 
-export async function getUniqueConversationController(req: Request, res: Response) {
+export async function getUniqueConversation(req: Request, res: Response) {
     const userId: string = req.params.userId as string;
     const recipientId: string = req.params.recipientId as string;
     const userService = new UserService();

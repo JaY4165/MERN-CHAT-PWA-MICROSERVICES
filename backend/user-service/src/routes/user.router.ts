@@ -1,17 +1,17 @@
 import { Router } from 'express';
-import { createNewProfileController, getConversationsController, getProfileController, getUniqueConversationController, updateProfileController } from '../controllers/user.controller';
+import * as userController from '../controllers/user.controller';
 
 
 const router: Router = Router();
 
-router.post('/create-profile/:userId', createNewProfileController);
+router.post('/create-profile/:userId', userController.createNewProfile);
 
-router.get('/read-profile/:userId', getProfileController)
+router.get('/read-profile/:userId', userController.getProfile)
 
-router.put('/update-profile/:userId', updateProfileController);
+router.put('/update-profile/:userId', userController.updateProfile);
 
-router.get('/user-conversations/:userId', getConversationsController)
+router.get('/user-conversations/:userId', userController.getConversations)
 
-router.get('user-conversation/:userId/:recipientId', getUniqueConversationController)
+router.get('user-conversation/:userId/:recipientId', userController.getUniqueConversation)
 
 export default router;  
