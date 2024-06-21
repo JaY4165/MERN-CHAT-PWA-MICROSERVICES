@@ -27,6 +27,7 @@ app.use(
         credentials: true,
     })
 );
+
 app.use(limiter);
 
 const morganFormat = ':method :url :status :response-time ms';
@@ -50,7 +51,7 @@ app.use("/api/chat", authRouter.default);
 
 app.use("*"
     , (req: Request, res: Response) => {
-        res.status(404).json({ message: "Route not found" } );
+        res.status(404).json({ message: "Route not found" });
     });
 
 
