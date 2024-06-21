@@ -45,9 +45,13 @@ export async function verifyAccessToken(
         );
     } catch (error) {
         if (error instanceof jwt.TokenExpiredError) {
-            return res.status(StatusCodes.BAD_REQUEST).json({ message: 'Acess Token has expired' });
+            return res
+                .status(StatusCodes.BAD_REQUEST)
+                .json({ message: 'Acess Token has expired' });
         } else if (error instanceof jwt.JsonWebTokenError) {
-            return res.status(StatusCodes.BAD_REQUEST).json({ message: 'Invalid Acess Token' });
+            return res
+                .status(StatusCodes.BAD_REQUEST)
+                .json({ message: 'Invalid Acess Token' });
         } else {
             console.log('Access Token verification error :', error);
             next(error);
@@ -71,7 +75,9 @@ export async function verifyRefreshToken(
                 .status(StatusCodes.BAD_REQUEST)
                 .json({ message: 'Refresh Token has expired' });
         } else if (error instanceof jwt.JsonWebTokenError) {
-            return res.status(StatusCodes.BAD_REQUEST).json({ message: 'Invalid Refresh Token' });
+            return res
+                .status(StatusCodes.BAD_REQUEST)
+                .json({ message: 'Invalid Refresh Token' });
         } else {
             console.error('Refresh Token verification error :', error);
             next(error);

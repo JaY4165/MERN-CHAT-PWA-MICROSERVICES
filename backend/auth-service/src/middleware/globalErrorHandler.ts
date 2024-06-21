@@ -12,6 +12,8 @@ export const globalErrorHandler = async (
     if (!res.headersSent) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Something broke!');
     }
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Internal Server Error' });
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        message: 'Internal Server Error',
+    });
     next();
 };

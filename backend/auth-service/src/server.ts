@@ -32,28 +32,27 @@ app.use(limiter);
 
 const morganFormat = ':method :url :status :response-time ms';
 
-app.use(morgan(morganFormat, {
-    stream: {
-        write: (message) => {
-            const logObject = {
-                method: message.split(' ')[0],
-                url: message.split(' ')[1],
-                status: message.split(' ')[2],
-                responseTime: message.split(' ')[3],
-
-            };
-            logger.info(JSON.stringify(logObject));
-        }
-    }
-}));
+app.use(
+    morgan(morganFormat, {
+        stream: {
+            write: (message) => {
+                const logObject = {
+                    method: message.split(' ')[0],
+                    url: message.split(' ')[1],
+                    status: message.split(' ')[2],
+                    responseTime: message.split(' ')[3],
+                };
+                logger.info(JSON.stringify(logObject));
+            },
+        },
+    })
+);
 
 app.use('/api/auth', authRouter.default);
 
-app.use("*"
-    , (req: Request, res: Response) => {
-        res.status(404).json({ message: "Route not found" });
-    });
-
+app.use('*', (req: Request, res: Response) => {
+    res.status(404).json({ message: 'Route not found' });
+});
 
 app.use(globalErrorHandler);
 
