@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import ChatService from '../services/chat.service';
 
-export async function createConversationController(req: Request, res: Response) {
+export async function createConversation(req: Request, res: Response) {
     const chatService = new ChatService();
     try {
         const { userId, recipientId }: { userId: string, recipientId: string } = req.body
