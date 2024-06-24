@@ -14,8 +14,6 @@ router.delete('/delete-conversation', chatController.deleteConversation);
 
 router.post('/send-message');
 
-router.get('/read-message');
-
 router.delete('/delete-message');
 
 export default router;

@@ -46,3 +46,27 @@ export async function deleteConversation(req: Request, res: Response) {
         );
     }
 }
+
+export async function sendMessage(req: Request, res: Response) {
+    const chatService = new ChatService();
+    try {
+        const { message, userId, recipientId }: { message: string; userId: string; recipientId: string } = req.body;
+        const result = await chatService.sendMessage(message, userId, recipientId)
+        res.status(StatusCodes.OK).json(result);
+    } catch (error: unknown) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error while sending message');
+    }
+}
+
+export async function deleteMessage(req: Request, res: Response) {
+    const chatService = new ChatService();
+    try {
+        const { messageId, userId, recipientId }: { messageId: string; userId: string; recipientId: string } = req.body;
+        const result = await chatService.deleteMessage(messageId, userId, recipientId)
+        res.status(StatusCodes.OK).json(result);
+    } catch (error: unknown) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error while deleting message');
+    }
+}
+
+

@@ -41,6 +41,27 @@ class ChatService {
             throw new Error('Error while deleting conversation');
         }
     }
+
+    async sendMessage(message: string, userId: string, recipientId: string) {
+        try {
+            const result = await this.repository.sendMessageRepo(message, userId, recipientId);
+            return result;
+        } catch (error) {
+            console.log(error);
+            throw new Error('Error while sending message');
+        }
+    }
+
+
+    async deleteMessage(messageId: string, userId: string, recipientId: string) {
+        try {
+            const result = await this.repository.deleteMessageRepo(messageId, userId, recipientId);
+            return result;
+        } catch (error) {
+            console.log(error);
+            throw new Error('Error while deleting message');
+        }
+    }
 }
 
 export default ChatService;
