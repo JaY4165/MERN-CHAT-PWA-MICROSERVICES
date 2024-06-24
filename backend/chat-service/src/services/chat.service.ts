@@ -21,6 +21,26 @@ class ChatService {
             );
         }
     }
+
+    async readConversation(userId: string, recipientId: string) {
+        try {
+            const result = await this.repository.readConversationRepo(userId, recipientId);
+            return result;
+        } catch (error) {
+            console.log(error);
+            throw new Error('Error while fetching conversations');
+        }
+    }
+
+    async deleteConversation(userId: string, recipientId: string) {
+        try {
+            const result = await this.repository.deleteConversationRepo(userId, recipientId);
+            return result;
+        } catch (error) {
+            console.log(error);
+            throw new Error('Error while deleting conversation');
+        }
+    }
 }
 
 export default ChatService;

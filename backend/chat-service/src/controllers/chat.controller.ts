@@ -16,3 +16,33 @@ export async function createConversation(req: Request, res: Response) {
         );
     }
 }
+
+export async function readConversation(req: Request, res: Response) {
+    const chatService = new ChatService();
+    try {
+        const { userId, recipientId }: { userId: string; recipientId: string } =
+            req.body;
+        const result: Record<string, string> =
+            await chatService.readConversation(userId, recipientId);
+        res.status(StatusCodes.OK).json(result);
+    } catch (error: unknown) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
+            'Error while fetching conversations'
+        );
+    }
+}
+
+export async function deleteConversation(req: Request, res: Response) {
+    const chatService = new ChatService();
+    try {
+        const { userId, recipientId }: { userId: string; recipientId: string } =
+            req.body;
+        const result: Record<string, string> =
+            await chatService.deleteConversation(userId, recipientId);
+        res.status(StatusCodes.OK).json(result);
+    } catch (error: unknown) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
+            'Error while deleting conversation'
+        );
+    }
+}

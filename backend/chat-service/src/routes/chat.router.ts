@@ -8,9 +8,9 @@ router.post(
     chatController.createConversation
 );
 
-router.get('/read-conversation');
+router.get('/read-conversation', chatController.readConversation);
 
-router.delete('/delete-conversation');
+router.delete('/delete-conversation', chatController.deleteConversation);
 
 router.post('/send-message');
 
