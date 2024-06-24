@@ -2,13 +2,15 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import ChatService from '../services/chat.service';
 
-export async function createConversation(req: Request, res: Response) {
+export async function createConversationController(req: Request, res: Response) {
     const chatService = new ChatService();
+
     try {
-        const { userId, recipientId }: { userId: string; recipientId: string } =
-            req.body;
+        const { userId, recipientId }: { userId: string; recipientId: string } = req.params as { userId: string; recipientId: string };
+        console.log(userId, recipientId, "in controller")
         const result: Record<string, string> =
             await chatService.createNewConversation(userId, recipientId);
+        console.log(result)
         res.status(StatusCodes.CREATED).json(result);
     } catch (error: unknown) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
@@ -32,11 +34,11 @@ export async function readConversation(req: Request, res: Response) {
     }
 }
 
-export async function deleteConversation(req: Request, res: Response) {
+export async function deleteConversationController(req: Request, res: Response) {
     const chatService = new ChatService();
     try {
-        const { userId, recipientId }: { userId: string; recipientId: string } =
-            req.body;
+        const { userId, recipientId }: { userId: string, recipientId: string } =
+            req.params as { userId: string; recipientId: string };
         const result: Record<string, string> =
             await chatService.deleteConversation(userId, recipientId);
         res.status(StatusCodes.OK).json(result);

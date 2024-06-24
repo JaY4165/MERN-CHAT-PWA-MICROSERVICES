@@ -1,19 +1,20 @@
 import { Router } from 'express';
 import * as chatController from '../controllers/chat.controller';
 
+
 const router: Router = Router();
 
 router.post(
     '/create-conversation/:userId/:recipientId',
-    chatController.createConversation
+    chatController.createConversationController
 );
 
-router.get('/read-conversation', chatController.readConversation);
+// router.get('/read-conversation', chatController.readConversation);
 
-router.delete('/delete-conversation', chatController.deleteConversation);
+// router.delete('/delete-conversation/:userId/:recipientId', chatController.deleteConversation);
 
-router.post('/send-message');
+// router.post('/send-message');
 
-router.delete('/delete-message');
+// router.delete('/delete-message');
 
 export default router;
