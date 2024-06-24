@@ -14,22 +14,22 @@ datasource db {
 }
 
 model Users {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  email      String   @unique
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  email      String    @unique
   password   String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  Profiles    Profiles?
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  Profiles   Profiles?
 }
 
 model Profiles {
-  id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  user_id          String   @unique @db.ObjectId
-  username         String
-  profile_picture  String
-  bio              String
-  gender           String
-  created_at       DateTime @default(now())
-  updated_at       DateTime @updatedAt
-  Users             Users    @relation(fields: [user_id], references: [id])
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  user_id         String   @unique @db.ObjectId
+  username        String   @default("null")
+  profile_picture String   @default("null")
+  bio             String   @default("null")
+  gender          String   @default("null")
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+  Users           Users    @relation(fields: [user_id], references: [id])
 }

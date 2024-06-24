@@ -68,5 +68,3 @@ export async function deleteMessage(req: Request, res: Response) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Error while deleting message');
     }
 }
-
-
